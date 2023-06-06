@@ -280,15 +280,19 @@ These are the message types currently supported:
 
 ## Changes in this fork from the original
 
-### 5 June 2023
+Uninstall the original:
 
-Can be installed with:
+```sh
+go get github.com/gempir/go-twitch-irc/v4@none
+```
+
+Install the fork:
 
 ```sh
 go get -u github.com/techygrrrl/go-twitch-irc
 ```
 
-And import:
+Update your imports from `github.com/gempir/go-twitch-irc/v4` to `github.com/techygrrrl/go-twitch-irc`:
 
 ```go
 import (
@@ -299,5 +303,7 @@ import (
 )
 ```
 
-- Run [easytags](https://github.com/betacraft/easytags) on the `./client.go` file: `easytags client.go json`
+### 5 June 2023
+
+- Ran [easytags](https://github.com/betacraft/easytags) on the `./client.go` file: `easytags client.go json` to programmatically add JSON tags
 - Package name change for `go get`
