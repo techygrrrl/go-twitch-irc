@@ -269,3 +269,4 @@ These are the message types currently supported:
 ## Changes in this fork from the original
 
 - Run [easytags](https://github.com/betacraft/easytags) on the `./client.go` file: `easytags client.go json`
+- Package name change for `go get`
