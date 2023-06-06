@@ -4,7 +4,7 @@ import (
 	"log"
 	"strings"
 
-	twitch "github.com/techygrrrl/go-twitch-irc/v4"
+	twitch "github.com/techygrrrl/go-twitch-irc"
 )
 
 const (

@@ -1,3 +1,3 @@
-module github.com/techygrrrl/go-twitch-irc/v4
+module github.com/techygrrrl/go-twitch-irc
 
 go 1.12
