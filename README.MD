@@ -5,6 +5,18 @@ I highly recommend reading the documentation below, but this readme gives a basi
 
 Documentation: https://pkg.go.dev/github.com/gempir/go-twitch-irc/v4?tab=doc
 
+- [Getting Started](#getting-started)
+	- [Available Data](#available-data)
+	- [Available Methods](#available-methods)
+	- [Client Methods](#client-methods)
+	- [Options](#options)
+		- [Capabilities](#capabilities)
+	- [Callbacks](#callbacks)
+	- [Message Types](#message-types)
+- [Changes in this fork from the original](#changes-in-this-fork-from-the-original)
+	- [5 June 2023](#5-june-2023)
+
+
 ## Getting Started
 ```go
 package main
@@ -225,7 +237,7 @@ Option modifications must be done before calling Connect on the client.
 
 #### Capabilities
 
-By default, the client sends along these capabilities ([Tags](https://dev.twitch.tv/docs/irc/tags), [Commands](https://dev.twitch.tv/docs/irc/commands)).  
+By default, the client sends along these capabilities ([Tags](https://dev.twitch.tv/docs/irc/tags), [Commands](https://dev.twitch.tv/docs/irc/commands)).
 
 ### Callbacks
 
@@ -267,6 +279,25 @@ These are the message types currently supported:
 
 
 ## Changes in this fork from the original
+
+### 5 June 2023
+
+Can be installed with:
+
+```sh
+go get -u github.com/techygrrrl/go-twitch-irc
+```
+
+And import:
+
+```go
+import (
+	"fmt"
+	"time"
+
+	"github.com/techygrrrl/go-twitch-irc"
+)
+```
 
 - Run [easytags](https://github.com/betacraft/easytags) on the `./client.go` file: `easytags client.go json`
 - Package name change for `go get`
