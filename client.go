@@ -60,11 +60,11 @@ var (
 
 // User data you receive from TMI
 type User struct {
-	ID          string
-	Name        string
-	DisplayName string
-	Color       string
-	Badges      map[string]int
+	ID          string         `json:"id"`
+	Name        string         `json:"name"`
+	DisplayName string         `json:"display_name"`
+	Color       string         `json:"color"`
+	Badges      map[string]int `json:"badges"`
 }
 
 // Message interface that all messages implement
@@ -74,11 +74,11 @@ type Message interface {
 
 // RawMessage data you receive from TMI
 type RawMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
-	Tags    map[string]string
-	Message string
+	Raw     string            `json:"raw"`
+	Type    MessageType       `json:"type"`
+	RawType string            `json:"raw_type"`
+	Tags    map[string]string `json:"tags"`
+	Message string            `json:"message"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -88,18 +88,18 @@ func (msg *RawMessage) GetType() MessageType {
 
 // WhisperMessage data you receive from WHISPER message type
 type WhisperMessage struct {
-	User User
+	User User `json:"user"`
 
-	Raw       string
-	Type      MessageType
-	RawType   string
-	Tags      map[string]string
-	Message   string
-	Target    string
-	MessageID string
-	ThreadID  string
-	Emotes    []*Emote
-	Action    bool
+	Raw       string            `json:"raw"`
+	Type      MessageType       `json:"type"`
+	RawType   string            `json:"raw_type"`
+	Tags      map[string]string `json:"tags"`
+	Message   string            `json:"message"`
+	Target    string            `json:"target"`
+	MessageID string            `json:"message_id"`
+	ThreadID  string            `json:"thread_id"`
+	Emotes    []*Emote          `json:"emotes"`
+	Action    bool              `json:"action"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -109,31 +109,31 @@ func (msg *WhisperMessage) GetType() MessageType {
 
 // PrivateMessage data you receive from PRIVMSG message type
 type PrivateMessage struct {
-	User User
+	User User `json:"user"`
 
-	Raw            string
-	Type           MessageType
-	RawType        string
-	Tags           map[string]string
-	Message        string
-	Channel        string
-	RoomID         string
-	ID             string
-	Time           time.Time
-	Emotes         []*Emote
-	Bits           int
-	Action         bool
-	FirstMessage   bool
-	Reply          *Reply
-	CustomRewardID string
+	Raw            string            `json:"raw"`
+	Type           MessageType       `json:"type"`
+	RawType        string            `json:"raw_type"`
+	Tags           map[string]string `json:"tags"`
+	Message        string            `json:"message"`
+	Channel        string            `json:"channel"`
+	RoomID         string            `json:"room_id"`
+	ID             string            `json:"id"`
+	Time           time.Time         `json:"time"`
+	Emotes         []*Emote          `json:"emotes"`
+	Bits           int               `json:"bits"`
+	Action         bool              `json:"action"`
+	FirstMessage   bool              `json:"first_message"`
+	Reply          *Reply            `json:"reply"`
+	CustomRewardID string            `json:"custom_reward_id"`
 }
 
 type Reply struct {
-	ParentMsgID       string
-	ParentUserID      string
-	ParentUserLogin   string
-	ParentDisplayName string
-	ParentMsgBody     string
+	ParentMsgID       string `json:"parent_msg_id"`
+	ParentUserID      string `json:"parent_user_id"`
+	ParentUserLogin   string `json:"parent_user_login"`
+	ParentDisplayName string `json:"parent_display_name"`
+	ParentMsgBody     string `json:"parent_msg_body"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -143,17 +143,17 @@ func (msg *PrivateMessage) GetType() MessageType {
 
 // ClearChatMessage data you receive from CLEARCHAT message type
 type ClearChatMessage struct {
-	Raw            string
-	Type           MessageType
-	RawType        string
-	Tags           map[string]string
-	Message        string
-	Channel        string
-	RoomID         string
-	Time           time.Time
-	BanDuration    int
-	TargetUserID   string
-	TargetUsername string
+	Raw            string            `json:"raw"`
+	Type           MessageType       `json:"type"`
+	RawType        string            `json:"raw_type"`
+	Tags           map[string]string `json:"tags"`
+	Message        string            `json:"message"`
+	Channel        string            `json:"channel"`
+	RoomID         string            `json:"room_id"`
+	Time           time.Time         `json:"time"`
+	BanDuration    int               `json:"ban_duration"`
+	TargetUserID   string            `json:"target_user_id"`
+	TargetUsername string            `json:"target_username"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -163,14 +163,14 @@ func (msg *ClearChatMessage) GetType() MessageType {
 
 // ClearMessage data you receive from CLEARMSG message type
 type ClearMessage struct {
-	Raw         string
-	Type        MessageType
-	RawType     string
-	Tags        map[string]string
-	Message     string
-	Channel     string
-	Login       string
-	TargetMsgID string
+	Raw         string            `json:"raw"`
+	Type        MessageType       `json:"type"`
+	RawType     string            `json:"raw_type"`
+	Tags        map[string]string `json:"tags"`
+	Message     string            `json:"message"`
+	Channel     string            `json:"channel"`
+	Login       string            `json:"login"`
+	TargetMsgID string            `json:"target_msg_id"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -180,14 +180,14 @@ func (msg *ClearMessage) GetType() MessageType {
 
 // RoomStateMessage data you receive from ROOMSTATE message type
 type RoomStateMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
-	Tags    map[string]string
-	Message string
-	Channel string
-	RoomID  string
-	State   map[string]int
+	Raw     string            `json:"raw"`
+	Type    MessageType       `json:"type"`
+	RawType string            `json:"raw_type"`
+	Tags    map[string]string `json:"tags"`
+	Message string            `json:"message"`
+	Channel string            `json:"channel"`
+	RoomID  string            `json:"room_id"`
+	State   map[string]int    `json:"state"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -197,21 +197,21 @@ func (msg *RoomStateMessage) GetType() MessageType {
 
 // UserNoticeMessage  data you receive from USERNOTICE message type
 type UserNoticeMessage struct {
-	User User
+	User User `json:"user"`
 
-	Raw       string
-	Type      MessageType
-	RawType   string
-	Tags      map[string]string
-	Message   string
-	Channel   string
-	RoomID    string
-	ID        string
-	Time      time.Time
-	Emotes    []*Emote
-	MsgID     string
-	MsgParams map[string]string
-	SystemMsg string
+	Raw       string            `json:"raw"`
+	Type      MessageType       `json:"type"`
+	RawType   string            `json:"raw_type"`
+	Tags      map[string]string `json:"tags"`
+	Message   string            `json:"message"`
+	Channel   string            `json:"channel"`
+	RoomID    string            `json:"room_id"`
+	ID        string            `json:"id"`
+	Time      time.Time         `json:"time"`
+	Emotes    []*Emote          `json:"emotes"`
+	MsgID     string            `json:"msg_id"`
+	MsgParams map[string]string `json:"msg_params"`
+	SystemMsg string            `json:"system_msg"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -221,15 +221,15 @@ func (msg *UserNoticeMessage) GetType() MessageType {
 
 // UserStateMessage data you receive from the USERSTATE message type
 type UserStateMessage struct {
-	User User
+	User User `json:"user"`
 
-	Raw       string
-	Type      MessageType
-	RawType   string
-	Tags      map[string]string
-	Message   string
-	Channel   string
-	EmoteSets []string
+	Raw       string            `json:"raw"`
+	Type      MessageType       `json:"type"`
+	RawType   string            `json:"raw_type"`
+	Tags      map[string]string `json:"tags"`
+	Message   string            `json:"message"`
+	Channel   string            `json:"channel"`
+	EmoteSets []string          `json:"emote_sets"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -239,13 +239,13 @@ func (msg *UserStateMessage) GetType() MessageType {
 
 // NoticeMessage data you receive from the NOTICE message type
 type NoticeMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
-	Tags    map[string]string
-	Message string
-	Channel string
-	MsgID   string
+	Raw     string            `json:"raw"`
+	Type    MessageType       `json:"type"`
+	RawType string            `json:"raw_type"`
+	Tags    map[string]string `json:"tags"`
+	Message string            `json:"message"`
+	Channel string            `json:"channel"`
+	MsgID   string            `json:"msg_id"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -256,15 +256,15 @@ func (msg *NoticeMessage) GetType() MessageType {
 // UserJoinMessage desJoines the message that is sent whenever a user joins a channel we're connected to
 // See https://dev.twitch.tv/docs/irc/membership/#join-twitch-membership
 type UserJoinMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 
 	// Channel name
-	Channel string
+	Channel string `json:"channel"`
 
 	// User name
-	User string
+	User string `json:"user"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -275,15 +275,15 @@ func (msg *UserJoinMessage) GetType() MessageType {
 // UserPartMessage describes the message that is sent whenever a user leaves a channel we're connected to
 // See https://dev.twitch.tv/docs/irc/membership/#part-twitch-membership
 type UserPartMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 
 	// Channel name
-	Channel string
+	Channel string `json:"channel"`
 
 	// User name
-	User string
+	User string `json:"user"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -294,13 +294,13 @@ func (msg *UserPartMessage) GetType() MessageType {
 // GlobalUserStateMessage On successful login, provides data about the current logged-in user through IRC tags
 // See https://dev.twitch.tv/docs/irc/tags/#globaluserstate-twitch-tags
 type GlobalUserStateMessage struct {
-	User User
+	User User `json:"user"`
 
-	Raw       string
-	Type      MessageType
-	RawType   string
-	Tags      map[string]string
-	EmoteSets []string
+	Raw       string            `json:"raw"`
+	Type      MessageType       `json:"type"`
+	RawType   string            `json:"raw_type"`
+	Tags      map[string]string `json:"tags"`
+	EmoteSets []string          `json:"emote_sets"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -310,9 +310,9 @@ func (msg *GlobalUserStateMessage) GetType() MessageType {
 
 // ReconnectMessage describes the
 type ReconnectMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -323,15 +323,15 @@ func (msg *ReconnectMessage) GetType() MessageType {
 // NamesMessage describes the data posted in response to a /names command
 // See https://www.alien.net.au/irc/irc2numerics.html#353
 type NamesMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 
 	// Channel name
-	Channel string
+	Channel string `json:"channel"`
 
 	// List of user names
-	Users []string
+	Users []string `json:"users"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -341,11 +341,11 @@ func (msg *NamesMessage) GetType() MessageType {
 
 // PingMessage describes an IRC PING message
 type PingMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 
-	Message string
+	Message string `json:"message"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -355,11 +355,11 @@ func (msg *PingMessage) GetType() MessageType {
 
 // PongMessage describes an IRC PONG message
 type PongMessage struct {
-	Raw     string
-	Type    MessageType
-	RawType string
+	Raw     string      `json:"raw"`
+	Type    MessageType `json:"type"`
+	RawType string      `json:"raw_type"`
 
-	Message string
+	Message string `json:"message"`
 }
 
 // GetType implements the Message interface, and returns this message's type
@@ -369,10 +369,10 @@ func (msg *PongMessage) GetType() MessageType {
 
 // Client client to control your connection and attach callbacks
 type Client struct {
-	IrcAddress               string
+	IrcAddress               string `json:"irc_address"`
 	ircUser                  string
 	ircToken                 string
-	TLS                      bool
+	TLS                      bool `json:"tls"`
 	connActive               tAtomBool
 	channels                 map[string]bool
 	channelUserlistMutex     *sync.RWMutex
@@ -420,24 +420,24 @@ type Client struct {
 
 	// Option whether to send pings every `IdlePingInterval`. The IdlePingInterval is interrupted every time a message is received from the irc server
 	// The variable may only be modified before calling Connect
-	SendPings bool
+	SendPings bool `json:"send_pings"`
 
 	// IdlePingInterval is the interval at which to send a ping to the irc server to ensure the connection is alive.
 	// The variable may only be modified before calling Connect
-	IdlePingInterval time.Duration
+	IdlePingInterval time.Duration `json:"idle_ping_interval"`
 
 	// PongTimeout is the time go-twitch-irc waits after sending a ping before issuing a reconnect
 	// The variable may only be modified before calling Connect
-	PongTimeout time.Duration
+	PongTimeout time.Duration `json:"pong_timeout"`
 
 	// SetupCmd is the command that is ran on successful connection to Twitch. Useful if you are proxying or something to run a custom command on connect.
 	// The variable must be modified before calling Connect or the command will not run.
-	SetupCmd string
+	SetupCmd string `json:"setup_cmd"`
 
 	// Capabilities is the list of capabilities that should be sent as part of the connection setup
 	// By default, this is all caps (Tags, Commands, Membership)
 	// If this is an empty list or nil, no CAP REQ message is sent at all
-	Capabilities []string
+	Capabilities []string `json:"capabilities"`
 
 	// The ratelimits the client will respect when sending messages
 	joinRateLimiter RateLimiter
