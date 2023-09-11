@@ -10,17 +10,17 @@ import (
 const maxMessageLength = 510
 
 type ircMessage struct {
-	Raw     string
-	Tags    map[string]string
-	Source  ircMessageSource
-	Command string
-	Params  []string
+	Raw     string            `json:"raw"`
+	Tags    map[string]string `json:"tags"`
+	Source  ircMessageSource  `json:"source"`
+	Command string            `json:"command"`
+	Params  []string          `json:"params"`
 }
 
 type ircMessageSource struct {
-	Nickname string
-	Username string
-	Host     string
+	Nickname string `json:"nickname"`
+	Username string `json:"username"`
+	Host     string `json:"host"`
 }
 
 func parseIRCMessage(line string) (*ircMessage, error) {

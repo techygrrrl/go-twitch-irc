@@ -52,8 +52,8 @@ const (
 )
 
 type messageTypeDescription struct {
-	Type   MessageType
-	Parser func(*ircMessage) Message
+	Type   MessageType               `json:"type"`
+	Parser func(*ircMessage) Message `json:"parser"`
 }
 
 var messageTypeMap map[string]messageTypeDescription
@@ -80,16 +80,16 @@ func init() {
 
 // EmotePosition is a single position of an emote to be used for text replacement.
 type EmotePosition struct {
-	Start int
-	End   int
+	Start int `json:"start"`
+	End   int `json:"end"`
 }
 
 // Emote twitch emotes
 type Emote struct {
-	Name      string
-	ID        string
-	Count     int
-	Positions []EmotePosition
+	Name      string          `json:"name"`
+	ID        string          `json:"id"`
+	Count     int             `json:"count"`
+	Positions []EmotePosition `json:"positions"`
 }
 
 // ParseMessage parse a raw Twitch IRC message
